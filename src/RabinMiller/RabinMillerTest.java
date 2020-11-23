@@ -1,6 +1,7 @@
 package RabinMiller;
 
-import java.util.Random;
+import MyRandom.MyRandom;
+import java.math.BigInteger;
 
 public class RabinMillerTest {
 
@@ -17,31 +18,43 @@ public class RabinMillerTest {
     }
 
     public boolean probablyPrime (int input){
+
         if ( input % 2 == 0 || input < 3){
-            System.out.println("Input is wrong");
+            //System.out.println("Input is wrong");
             return false;
         }
         int b = factorOutPowersOf2(input);
         int m = (int)((input - 1) / Math.pow(2, b));
-        System.out.println(input + " = 2^" + b + " * " + m + " + 1");
+        //System.out.println(input + " = 2^" + b + " * " + m + " + 1");
 
-        Random random = new Random();
+        MyRandom random = new MyRandom();
         WitnessLoop:
         for(int i = k; i>0; i-- ){
-            System.out.println("i = "+ i);
+            //System.out.println("i = "+ i);
             int a = 0;
             while (a < 2){
-                a = random.nextInt() % input;
+                a = random.generateRandomNb() % input;
             }
-            long z = (long) Math.pow(a, m) % input;
-            System.out.println("a= " + a + ";   z = " + z);
-            if (z == 1 || z == input - 1){
+            BigInteger A = new BigInteger(String.valueOf(a));
+            //BigInteger M = new BigInteger(String.valueOf(m));
+            BigInteger INPUT = new BigInteger(String.valueOf(input));
+
+            BigInteger Z = new BigInteger(String.valueOf(a));
+            Z = Z.pow(m);
+            Z = Z.remainder(INPUT);
+            //long z = (long) Math.pow(a, m) % input;
+
+            //System.out.println("a= " + a + ";   z = " + Z.doubleValue());
+            if (Z.doubleValue() == 1 || Z.doubleValue() == input - 1){
                 continue;
             }
             for (int j = b-1; j>0; j--){
-                z = (long) Math.pow(z, 2) % input;
-                System.out.println("j = " + j + ";   z = " + z) ;
-                if(z == input -1){
+                Z = Z.pow(2);
+                Z = Z.remainder(INPUT);
+                //z = (long) Math.pow(z, 2) % input;
+
+                //System.out.println("j = " + j + ";   z = " + Z.doubleValue()) ;
+                if(Z.doubleValue() == input -1){
                     continue WitnessLoop;
                 }
             }

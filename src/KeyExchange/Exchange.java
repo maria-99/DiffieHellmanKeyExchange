@@ -18,7 +18,7 @@ public class Exchange {
     private void setRandomNbs(){
         RabinMillerTest test = new RabinMillerTest();
         while (!test.probablyPrime(p)){
-            p = rand.generateRandomNb() % 104;
+            p = rand.generateRandomNb() % 500;
         }
 
         while (g == 0){
@@ -40,7 +40,7 @@ public class Exchange {
 
     public void exchangeKeys(){
         user1.exchange(user2);
-        System.out.println("KeyExchange.Exchange:");
+        System.out.println("Exchange:");
         System.out.println("p = "+ p +"; g = "+ g +"; user1 private key = "+ privateKey1 +"; user2 private key = "+ privateKey2);
         System.out.println("Shared key of user1 = " + user1.getSharedKey());
         System.out.println("Shared key of user2 = " + user2.getSharedKey());

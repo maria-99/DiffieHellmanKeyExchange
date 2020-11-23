@@ -3,7 +3,7 @@ import RabinMiller.RabinMillerTest;
 public class Main {
 
     public static void main(String[] args) {
-        /*
+
         MyRandom.MyRandom rand = new MyRandom.MyRandom();
 
         KeyExchange.User alice = new KeyExchange.User();
@@ -17,13 +17,12 @@ public class Main {
         exchange2.exchangeKeys();
         KeyExchange.Exchange exchange3 = new KeyExchange.Exchange(rand, bob, charlie);
         exchange3.exchangeKeys();
-        */
 
 
-
+        /*
         RabinMillerTest test = new RabinMillerTest();
         System.out.println(test.probablyPrime(31));
-
+        */
 
         /*
         MyRandom.MyRandom rand = new MyRandom.MyRandom();
